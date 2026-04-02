@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\thumm\\documents\\github\\herbert-365-project\\project\\intermediate\\build\\win64\\unrealeditor\\inc\\project\\uht\\projectprojectile.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\thumm\\documents\\github\\herbert-365-project\\project\\intermediate\\build\\win64\\x64\\projecteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\thumm\\documents\\github\\herbert-365-project\\project\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\project\\definitions.project.h",
+            "c:\\users\\thumm\\documents\\github\\herbert-365-project\\project\\source\\project\\projectprojectile.h",
+            "c:\\users\\thumm\\documents\\github\\herbert-365-project\\project\\intermediate\\build\\win64\\unrealeditor\\inc\\project\\uht\\projectprojectile.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

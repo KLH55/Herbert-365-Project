@@ -6,6 +6,7 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "Project/ProjectCharacter.h"
+#include "EnhancedInput/Public/InputActionValue.h"
 #include "Runtime/Engine/Classes/Engine/HitResult.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeProjectCharacter() {}
@@ -19,10 +20,62 @@ ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
+ENHANCEDINPUT_API UScriptStruct* Z_Construct_UScriptStruct_FInputActionValue();
 PROJECT_API UClass* Z_Construct_UClass_AProjectCharacter();
 PROJECT_API UClass* Z_Construct_UClass_AProjectCharacter_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Project();
 // End Cross Module References
+
+// Begin Class AProjectCharacter Function Interact
+struct Z_Construct_UFunction_AProjectCharacter_Interact_Statics
+{
+	struct ProjectCharacter_eventInteract_Parms
+	{
+		FInputActionValue Value;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// End of APawn interface\n" },
+#endif
+		{ "ModuleRelativePath", "ProjectCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "End of APawn interface" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Value_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_Value;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AProjectCharacter_Interact_Statics::NewProp_Value = { "Value", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ProjectCharacter_eventInteract_Parms, Value), Z_Construct_UScriptStruct_FInputActionValue, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Value_MetaData), NewProp_Value_MetaData) }; // 494646648
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AProjectCharacter_Interact_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AProjectCharacter_Interact_Statics::NewProp_Value,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectCharacter_Interact_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AProjectCharacter_Interact_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProjectCharacter, nullptr, "Interact", nullptr, nullptr, Z_Construct_UFunction_AProjectCharacter_Interact_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectCharacter_Interact_Statics::PropPointers), sizeof(Z_Construct_UFunction_AProjectCharacter_Interact_Statics::ProjectCharacter_eventInteract_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04480401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectCharacter_Interact_Statics::Function_MetaDataParams), Z_Construct_UFunction_AProjectCharacter_Interact_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AProjectCharacter_Interact_Statics::ProjectCharacter_eventInteract_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AProjectCharacter_Interact()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AProjectCharacter_Interact_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AProjectCharacter::execInteract)
+{
+	P_GET_STRUCT_REF(FInputActionValue,Z_Param_Out_Value);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Interact(Z_Param_Out_Value);
+	P_NATIVE_END;
+}
+// End Class AProjectCharacter Function Interact
 
 // Begin Class AProjectCharacter Function OverlapBegin
 struct Z_Construct_UFunction_AProjectCharacter_OverlapBegin_Statics
@@ -39,11 +92,11 @@ struct Z_Construct_UFunction_AProjectCharacter_OverlapBegin_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// UFUNCTION(blueprintCallable)\n// void Interact();\n" },
+		{ "Comment", "// OverlapBegin for when player collides with pickup.\n" },
 #endif
 		{ "ModuleRelativePath", "ProjectCharacter.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UFUNCTION(blueprintCallable)\nvoid Interact();" },
+		{ "ToolTip", "OverlapBegin for when player collides with pickup." },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComponent_MetaData[] = {
@@ -116,6 +169,7 @@ void AProjectCharacter::StaticRegisterNativesAProjectCharacter()
 {
 	UClass* Class = AProjectCharacter::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "Interact", &AProjectCharacter::execInteract },
 		{ "OverlapBegin", &AProjectCharacter::execOverlapBegin },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -222,7 +276,8 @@ struct Z_Construct_UClass_AProjectCharacter_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AProjectCharacter_OverlapBegin, "OverlapBegin" }, // 3559570210
+		{ &Z_Construct_UFunction_AProjectCharacter_Interact, "Interact" }, // 936113561
+		{ &Z_Construct_UFunction_AProjectCharacter_OverlapBegin, "OverlapBegin" }, // 3823175981
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -289,10 +344,10 @@ AProjectCharacter::~AProjectCharacter() {}
 struct Z_CompiledInDeferFile_FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AProjectCharacter, AProjectCharacter::StaticClass, TEXT("AProjectCharacter"), &Z_Registration_Info_UClass_AProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectCharacter), 47957366U) },
+		{ Z_Construct_UClass_AProjectCharacter, AProjectCharacter::StaticClass, TEXT("AProjectCharacter"), &Z_Registration_Info_UClass_AProjectCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectCharacter), 3867746883U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_2367199536(TEXT("/Script/Project"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_2707195857(TEXT("/Script/Project"),
 	Z_CompiledInDeferFile_FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -66,9 +66,10 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
 	
-	// UFUNCTION(blueprintCallable)
-	// void Interact();
+	UFUNCTION(BlueprintCallable)
+	void Interact(const FInputActionValue& Value);
 	
+	// OverlapBegin for when player collides with pickup.
 	UFUNCTION()
 	void OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 		AActor* OtherActor, 
@@ -85,4 +86,3 @@ public:
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 };
-

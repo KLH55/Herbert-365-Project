@@ -10,6 +10,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "Engine/LocalPlayer.h"
+#include "Door.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -69,6 +70,8 @@ void AProjectCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AProjectCharacter::Look);
+	
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AProjectCharacter::Interact);
 	}
 	else
 	{
@@ -103,12 +106,49 @@ void AProjectCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+// If the object has the Tag "Pickup" than it will increment ItemsCollected and destroy the pickup.
 void AProjectCharacter::OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	if (OtherActor->ActorHasTag("Pickup"))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Item Collected"));
 		ItemsCollected++;
+		UE_LOG(LogTemp, Warning, TEXT("My Items Collected: %d"), ItemsCollected);
 		OtherActor->Destroy();
+	}
+}
+
+void AProjectCharacter::Interact(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Interact Pressed"));
+	FVector start = FirstPersonCameraComponent->GetComponentLocation();
+	FVector end = start + (FirstPersonCameraComponent->GetForwardVector() * 300.0f);
+	
+	FHitResult hit;
+	FCollisionQueryParams params;
+	params.AddIgnoredActor(this);
+	
+	bool bHit = GetWorld()->LineTraceSingleByChannel(hit, start, end, ECC_Visibility, params);
+
+	if (bHit)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hit: %s"), *hit.GetActor()->GetName());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Nothing Hit"));
+	}
+	
+	if (!bHit) return;
+	
+	ADoor* Door = Cast<ADoor>(hit.GetActor());
+	if (Door)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Door detected"));
+		Door->Interact(this);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Not a door"));
 	}
 }

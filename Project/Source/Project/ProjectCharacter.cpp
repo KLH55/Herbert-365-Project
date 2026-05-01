@@ -34,9 +34,11 @@ AProjectCharacter::AProjectCharacter()
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+	
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this,&AProjectCharacter::OverlapBegin);
+	ItemsCollected = 0;
 
 }
-
 //////////////////////////////////////////////////////////////////////////// Input
 
 void AProjectCharacter::NotifyControllerChanged()
@@ -98,5 +100,15 @@ void AProjectCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void AProjectCharacter::OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	if (OtherActor->ActorHasTag("Pickup"))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Item Collected"));
+		ItemsCollected++;
+		OtherActor->Destroy();
 	}
 }

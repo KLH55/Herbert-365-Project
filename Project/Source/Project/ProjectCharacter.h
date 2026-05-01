@@ -43,23 +43,40 @@ class AProjectCharacter : public ACharacter
 
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	class UInputAction* LookAction;
+	UInputAction* LookAction;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
 	
 public:
 	AProjectCharacter();
+	
+	UPROPERTY(BlueprintReadOnly)
+    	int32 ItemsCollected;
 
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
-
+	
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-
-protected:
+	
 	// APawn interface
 	virtual void NotifyControllerChanged() override;
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
+	
+	// UFUNCTION(blueprintCallable)
+	// void Interact();
+	
+	UFUNCTION()
+	void OverlapBegin(UPrimitiveComponent* OverlappedComponent,
+		AActor* OtherActor, 
+		UPrimitiveComponent* OtherComp, 
+		int32 OtherBodyIndex, 
+		bool bFromSweep, 
+		const FHitResult 
+		& SweepResult);
 
 public:
 	/** Returns Mesh1P subobject **/

@@ -9,10 +9,17 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef PROJECT_ProjectCharacter_generated_h
 #error "ProjectCharacter.generated.h already included, missing '#pragma once' in ProjectCharacter.h"
 #endif
 #define PROJECT_ProjectCharacter_generated_h
+
+#define FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOverlapBegin);
+
 
 #define FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +46,7 @@ public: \
 #define FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_INCLASS_NO_PURE_DECLS \
 	FID_Users_thumm_Documents_GitHub_Herbert_365_Project_Project_Source_Project_ProjectCharacter_h_22_ENHANCED_CONSTRUCTORS \
 private: \
